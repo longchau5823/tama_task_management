@@ -1,83 +1,83 @@
 # TaMa – Task Management Application
 
-TaMa là ứng dụng web quản lý công việc cá nhân được xây dựng theo mô hình bảng, danh sách và thẻ công việc. Dự án lấy cảm hứng từ cách tổ chức công việc của Trello, tập trung vào các chức năng quản lý công việc cơ bản, trực quan và dễ sử dụng.
+TaMa is a personal task management web application built around boards, lists, and task cards. The project is inspired by Trello’s task organization approach and focuses on providing essential, intuitive, and user-friendly task management features.
 
-Dự án được thực hiện trong khuôn khổ học phần **Thực hành lập trình ứng dụng Java** tại Trường Đại học Công nghệ TP.HCM – HUTECH.
+This project was developed as part of the **Java Application Programming Practice** course at Ho Chi Minh City University of Technology – HUTECH.
 
-> Đây là dự án phục vụ mục đích học tập, trình diễn và bảo vệ đồ án môn học. Dự án chưa được thiết kế để triển khai trong môi trường production.
+> This project is intended for educational, demonstration, and academic project defense purposes. It has not been designed for production deployment.
 
 ---
 
-## Chức năng chính
+## Main Features
 
-### Xác thực và phân quyền
+### Authentication and Authorization
 
-- Đăng ký tài khoản.
-- Đăng nhập và đăng xuất.
-- Mã hóa mật khẩu bằng BCrypt.
-- Duy trì trạng thái đăng nhập bằng session.
-- Phân quyền người dùng:
-  - `USER`: sử dụng các chức năng quản lý công việc cá nhân.
-  - `ADMIN`: quản lý tài khoản người dùng.
+- User registration.
+- Login and logout.
+- Password encryption using BCrypt.
+- Session-based authentication.
+- Role-based authorization:
+  - `USER`: access to personal task management features.
+  - `ADMIN`: access to user account management features.
 
-### Quản lý Board
+### Board Management
 
-- Tạo Board mới.
-- Xem danh sách Board của người dùng.
-- Cập nhật thông tin Board.
-- Xóa Board.
-- Thiết lập màu nền hoặc ảnh nền cho Board.
+- Create new boards.
+- View the current user's boards.
+- Update board information.
+- Delete boards.
+- Set board background colors or images.
 
-### Quản lý List
+### List Management
 
-- Tạo List trong Board.
-- Đổi tên List.
-- Xóa List.
-- Sắp xếp các List theo vị trí.
+- Create lists within a board.
+- Rename lists.
+- Delete lists.
+- Reorder lists by position.
 
-### Quản lý Card
+### Card Management
 
-- Tạo Card trong List.
-- Cập nhật tiêu đề và nội dung Card.
-- Xóa Card.
-- Di chuyển Card giữa các List trong cùng một Board.
-- Sắp xếp Card bằng thao tác kéo thả.
-- Lưu thứ tự Card bằng thuộc tính `position`.
+- Create cards within a list.
+- Update card titles and descriptions.
+- Delete cards.
+- Move cards between lists within the same board.
+- Reorder cards using drag-and-drop.
+- Store card order using the `position` attribute.
 
-### Chi tiết Card
+### Card Details
 
-- Mô tả công việc.
-- Ngày hết hạn.
-- Đánh dấu hoàn thành.
-- Thời điểm hoàn thành.
-- Mức độ ưu tiên:
+- Task description.
+- Due date.
+- Completion status.
+- Completion timestamp.
+- Priority levels:
   - `LOW`
   - `MEDIUM`
   - `HIGH`
   - `URGENT`
-- Checklist công việc.
-- Bình luận.
-- Chỉnh sửa và xóa bình luận.
-- Gắn Label cho Card.
+- Task checklists.
+- Comments.
+- Comment editing and deletion.
+- Labels assigned to cards.
 
-### Quản lý Label
+### Label Management
 
-- Tạo Label cá nhân.
-- Cập nhật Label.
-- Xóa Label.
-- Tái sử dụng Label cho nhiều Card.
-- Quản lý màu sắc của Label.
+- Create personal labels.
+- Update labels.
+- Delete labels.
+- Reuse labels across multiple cards.
+- Manage label colors.
 
-### Quản trị người dùng
+### User Administration
 
-- Xem danh sách tài khoản.
-- Xem thông tin người dùng.
-- Quản lý trạng thái hoặc quyền của tài khoản theo phạm vi hệ thống.
-- Giới hạn quyền truy cập các chức năng quản trị đối với người dùng thông thường.
+- View the user account list.
+- View user information.
+- Manage account status or permissions within the system's supported scope.
+- Restrict administrative features from regular users.
 
 ---
 
-## Công nghệ sử dụng
+## Technologies Used
 
 ### Backend
 
@@ -101,11 +101,11 @@ Dự án được thực hiện trong khuôn khổ học phần **Thực hành l
 - Thymeleaf Layout Dialect
 - Bootstrap
 
-### Cơ sở dữ liệu
+### Database
 
 - MySQL
 
-### Công cụ phát triển
+### Development Tools
 
 - IntelliJ IDEA
 - HeidiSQL
@@ -116,9 +116,9 @@ Dự án được thực hiện trong khuôn khổ học phần **Thực hành l
 
 ---
 
-## Kiến trúc hệ thống
+## System Architecture
 
-Dự án được tổ chức theo kiến trúc phân tầng:
+The project follows a layered architecture:
 
 ```text
 Client
@@ -136,98 +136,98 @@ Repository
 MySQL Database
 ```
 
-Vai trò của từng tầng:
+Responsibilities of each layer:
 
-- **Controller:** tiếp nhận request và trả về giao diện hoặc dữ liệu JSON.
-- **Service:** xử lý nghiệp vụ của hệ thống.
-- **Repository:** truy cập dữ liệu thông qua Spring Data JPA.
-- **Entity:** ánh xạ các đối tượng Java với bảng trong cơ sở dữ liệu.
-- **DTO:** truyền dữ liệu giữa client và server trong các API.
-- **Thymeleaf:** quản lý layout và khung giao diện chung.
-- **JavaScript Fetch API:** gọi REST API và cập nhật giao diện mà không cần tải lại toàn bộ trang.
+- **Controller:** receives requests and returns rendered pages or JSON responses.
+- **Service:** handles business logic.
+- **Repository:** accesses data using Spring Data JPA.
+- **Entity:** maps Java objects to database tables.
+- **DTO:** transfers data between the client and server through APIs.
+- **Thymeleaf:** manages shared layouts and page structures.
+- **JavaScript Fetch API:** calls REST APIs and updates the interface without reloading the entire page.
 
-Dự án vẫn sử dụng mô hình MVC, trong đó Thymeleaf chịu trách nhiệm cung cấp layout và trang ban đầu, còn JavaScript gọi API để thực hiện phần lớn thao tác nghiệp vụ.
-
----
-
-## Quy tắc nghiệp vụ chính
-
-- Mỗi Board chỉ thuộc sở hữu của một người dùng.
-- Người dùng chỉ được quản lý Board thuộc sở hữu của mình.
-- Card chỉ được di chuyển giữa các List trong cùng một Board.
-- Chưa hỗ trợ di chuyển Card giữa hai Board khác nhau.
-- List và Card sử dụng thuộc tính `position` bắt đầu từ `0`.
-- Khi thay đổi vị trí, hệ thống chuẩn hóa lại thứ tự của các phần tử.
-- Label thuộc sở hữu của người dùng và có thể được tái sử dụng.
-- Card chưa hỗ trợ phân công cho nhiều thành viên.
-- Dữ liệu được xóa trực tiếp, chưa triển khai soft delete.
-- Hệ thống chưa lưu lịch sử thay đổi của Card.
+The project still follows the MVC model. Thymeleaf provides the initial pages and shared layouts, while JavaScript communicates with REST APIs to handle most business operations.
 
 ---
 
-## Yêu cầu môi trường
+## Main Business Rules
 
-Trước khi chạy dự án, cần cài đặt:
+- Each board belongs to only one user.
+- Users can only manage boards that they own.
+- Cards can only be moved between lists within the same board.
+- Moving cards between different boards is not currently supported.
+- List and card positions start from `0`.
+- When positions change, the system normalizes the order of the affected elements.
+- Labels belong to individual users and can be reused.
+- Cards cannot currently be assigned to multiple members.
+- Data is permanently deleted because soft deletion has not been implemented.
+- The system does not currently store card change history.
+
+---
+
+## System Requirements
+
+Before running the project, install the following software:
 
 - JDK 17
 - MySQL
 - Git
-- IntelliJ IDEA hoặc IDE hỗ trợ Maven
+- IntelliJ IDEA or another IDE with Maven support
 
-Có thể kiểm tra phiên bản Java bằng lệnh:
+Check the installed Java version using:
 
 ```bash
 java -version
 ```
 
-Kết quả cần hiển thị Java 17.
+The result should indicate that Java 17 is installed.
 
 ---
 
-## Cài đặt dự án
+## Project Installation
 
-### 1. Clone repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/longchau5823/tama_task_management.git
 cd tama_task_management
 ```
 
-Hoặc tải source code dưới dạng ZIP từ GitHub và giải nén.
+Alternatively, download the source code as a ZIP file from GitHub and extract it.
 
 ---
 
-### 2. Khởi tạo cơ sở dữ liệu
+### 2. Initialize the Database
 
-Mở MySQL bằng Laragon, HeidiSQL hoặc công cụ quản trị tương đương.
+Start MySQL using Laragon, HeidiSQL, or another database management tool.
 
-Import file:
+Import the following file:
 
 ```text
 database/tama_db.sql
 ```
 
-Script sẽ khởi tạo database:
+The script creates the following database:
 
 ```text
 tama_db
 ```
 
-Có thể import bằng HeidiSQL:
+To import the database using HeidiSQL:
 
-1. Kết nối tới MySQL.
-2. Chọn **File → Load SQL file**.
-3. Chọn file `database/tama_db.sql`.
-4. Thực thi script.
-5. Kiểm tra các bảng đã được tạo.
+1. Connect to the MySQL server.
+2. Select **File → Load SQL file**.
+3. Select `database/tama_db.sql`.
+4. Execute the script.
+5. Verify that the required tables have been created.
 
 ---
 
-### 3. Cấu hình kết nối database
+### 3. Configure the Database Connection
 
-Dự án hỗ trợ cấu hình kết nối thông qua biến môi trường.
+The project supports database configuration through environment variables.
 
-Các biến có thể sử dụng:
+The following variables can be used:
 
 ```text
 DB_URL
@@ -235,7 +235,7 @@ DB_USERNAME
 DB_PASSWORD
 ```
 
-Ví dụ:
+Example Spring Boot configuration:
 
 ```properties
 spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/tama_db}
@@ -243,47 +243,47 @@ spring.datasource.username=${DB_USERNAME:root}
 spring.datasource.password=${DB_PASSWORD:}
 ```
 
-Với cấu hình MySQL mặc định của Laragon:
+For the default MySQL configuration provided by Laragon:
 
 ```text
 Database: tama_db
 Username: root
-Password: để trống
+Password: leave empty
 Port: 3306
 ```
 
-Không nên đưa mật khẩu database thật vào repository.
+Do not commit real database passwords to the repository.
 
 ---
 
-### 4. Chạy dự án
+### 4. Run the Application
 
-#### Sử dụng IntelliJ IDEA
+#### Using IntelliJ IDEA
 
-1. Mở IntelliJ IDEA.
-2. Chọn **Open**.
-3. Chọn thư mục dự án.
-4. Chờ Maven tải các dependency.
-5. Kiểm tra Project SDK đang sử dụng JDK 17.
-6. Chạy class chứa annotation:
+1. Open IntelliJ IDEA.
+2. Select **Open**.
+3. Select the project directory.
+4. Wait for Maven to download the required dependencies.
+5. Verify that the Project SDK is configured to use JDK 17.
+6. Run the main class containing:
 
 ```java
 @SpringBootApplication
 ```
 
-#### Sử dụng Maven Wrapper trên Windows
+#### Using Maven Wrapper on Windows
 
 ```powershell
 .\mvnw.cmd spring-boot:run
 ```
 
-#### Sử dụng Git Bash, Linux hoặc macOS
+#### Using Git Bash, Linux, or macOS
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-Sau khi ứng dụng khởi động thành công, truy cập:
+After the application starts successfully, open:
 
 ```text
 http://localhost:8080
@@ -291,23 +291,23 @@ http://localhost:8080
 
 ---
 
-## Tài khoản sử dụng
+## User Accounts
 
-Người dùng có thể tạo tài khoản mới tại:
+New users can register at:
 
 ```text
 http://localhost:8080/register
 ```
 
-Sau khi đăng ký, tài khoản mặc định được cấp quyền người dùng thông thường.
+After registration, accounts are assigned the regular user role by default.
 
-Repository không công khai mật khẩu hoặc tài khoản quản trị cố định. Để kiểm thử chức năng quản trị, cần cấp quyền `ADMIN` cho tài khoản phù hợp trong cơ sở dữ liệu.
+The repository does not publish a fixed administrator account or password. To test administrative features, grant the `ADMIN` role to an appropriate account in the database.
 
-Không nên lưu tài khoản cá nhân, mật khẩu thật hoặc dữ liệu người dùng thật trong file SQL.
+Do not store personal accounts, real passwords, or real user data in the SQL script.
 
 ---
 
-## Cấu trúc thư mục
+## Project Structure
 
 ```text
 tama_task_management/
@@ -345,72 +345,81 @@ tama_task_management/
 └── README.md
 ```
 
-Cấu trúc thực tế có thể khác một phần tùy theo package hiện tại của dự án.
+The actual directory structure may differ slightly depending on the current package organization of the project.
 
 ---
 
-## Phạm vi hiện tại
+## Current Scope
 
-Phiên bản hiện tại tập trung vào quản lý công việc cá nhân.
+The current version focuses on personal task management.
 
-Các chức năng chưa nằm trong phạm vi:
+The following features are outside the current project scope:
 
-- Board có nhiều thành viên.
-- Phân công Card cho thành viên.
-- Chia sẻ Board.
-- Di chuyển Card giữa nhiều Board.
-- Thông báo thời gian thực.
-- Email nhắc ngày hết hạn.
-- Lịch sử hoạt động.
-- Soft delete và khôi phục dữ liệu.
-- Đồng bộ dữ liệu theo thời gian thực.
-- Ứng dụng di động.
-- Triển khai production.
-
----
-
-## Hướng phát triển
-
-Một số hướng có thể tiếp tục phát triển:
-
-- Hỗ trợ nhiều thành viên trong Board.
-- Phân quyền chủ sở hữu, quản trị viên và thành viên.
-- Phân công Card cho người dùng.
-- Gửi thông báo khi Card gần hết hạn.
-- Bổ sung activity log.
-- Tìm kiếm và lọc Card.
-- Lưu trữ file đính kèm.
-- Soft delete và khôi phục dữ liệu.
-- Viết đầy đủ unit test và integration test.
-- Docker hóa ứng dụng và database.
-- Triển khai ứng dụng lên môi trường cloud.
-- Xây dựng frontend riêng bằng React hoặc Vue.
+- Boards with multiple members.
+- Assigning cards to members.
+- Board sharing.
+- Moving cards between different boards.
+- Real-time notifications.
+- Due-date reminder emails.
+- Activity history.
+- Soft deletion and data recovery.
+- Real-time data synchronization.
+- Mobile applications.
+- Production deployment.
 
 ---
 
-## Thành viên thực hiện
+## Future Development
 
-- **Châu Thuyên Long** – Trưởng nhóm, phát triển chính
-- **<Tên thành viên 2>** – Phân tích và thiết kế hệ thống
-- **<Tên thành viên 3>** – Tài liệu và trình bày
+Possible future improvements include:
 
-Trường Đại học Công nghệ TP.HCM – HUTECH  
-Ngành Công nghệ thông tin – Chuyên ngành Công nghệ phần mềm
+- Supporting multiple members within a board.
+- Adding owner, administrator, and member permissions.
+- Assigning cards to users.
+- Sending notifications when cards are close to their due dates.
+- Adding activity logs.
+- Searching and filtering cards.
+- Supporting file attachments.
+- Implementing soft deletion and data recovery.
+- Adding complete unit and integration test coverage.
+- Dockerizing the application and database.
+- Deploying the application to a cloud environment.
+- Building a separate frontend using React or Vue.
 
 ---
 
-## Ghi chú
+## Author
 
-Dự án được xây dựng nhằm mục đích học tập và thực hành các kiến thức:
+**Châu Thuyên Long**  
+Team Leader and Sole Developer
+
+Responsibilities:
+
+- System analysis and technical planning
+- Database design
+- Backend development
+- Frontend development
+- REST API implementation
+- Authentication and authorization
+- Testing, integration, and project maintenance
+
+Ho Chi Minh City University of Technology – HUTECH  
+Information Technology – Software Engineering
+
+---
+
+## Notes
+
+This project was developed for educational purposes and to practice the following technologies and concepts:
 
 - Spring Boot
 - Spring MVC
 - Spring Security
-- RESTful API
+- RESTful APIs
 - Spring Data JPA
 - MySQL
 - Thymeleaf
 - JavaScript Fetch API
-- Thiết kế và tổ chức ứng dụng theo kiến trúc phân tầng
+- Layered application architecture
 
-Một số thành phần có thể tiếp tục được chỉnh sửa và hoàn thiện trong các phiên bản sau.
+Some components may continue to be modified and improved in future versions.
