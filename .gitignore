@@ -1,0 +1,76 @@
+# Maven build
+target/
+out/
+
+# Keep the Maven Wrapper commit-ready
+!.mvn/
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.jar
+!mvnw
+!mvnw.cmd
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse / Spring Tool Suite
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+
+# Java
+*.class
+hs_err_pid*
+replay_pid*
+
+# Logs
+*.log
+logs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+application-local.properties
+application-secret.properties
+application-secrets.properties
+application-prod-local.properties
+application-*.local.properties
+
+# Runtime-generated content
+/uploads/
+/temp/
+/tmp/
+
+# Test and coverage output
+coverage/
+test-results/
+surefire-reports/
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor temporary files
+*.tmp
+*.bak
+*.swp
+*~
+~$*

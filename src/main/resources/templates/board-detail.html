@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/app-layout}">
+<head>
+    <title>Board</title>
+    <th:block layout:fragment="pageStyles">
+        <link rel="stylesheet" th:href="@{/css/board.css}">
+        <link rel="stylesheet" th:href="@{/css/comment.css}">
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content" class="app-content board-page" th:attr="data-board-id=${boardId}">
+    <p id="board-detail-message" class="notice" role="status" hidden></p>
+
+    <section id="board-canvas" class="board-workspace" hidden>
+        <header class="board-toolbar">
+            <a class="board-back-link" th:href="@{/dashboard}" aria-label="Quay lại danh sách Board">
+                <span aria-hidden="true">←</span>
+                <span>Boards</span>
+            </a>
+            <div class="board-title-group">
+                <h1 id="board-title">Đang tải Board...</h1>
+                <p id="board-description" hidden></p>
+            </div>
+        </header>
+
+        <div class="board-lists-panel">
+            <p id="board-list-message" class="notice" role="status" hidden></p>
+
+            <div id="board-list-scroll" class="board-list-scroll"
+                 aria-label="Các List và Card theo thứ tự. Kéo List để sắp xếp; nhấn Card để xem chi tiết, nhấn giữ rồi kéo Card để di chuyển.">
+                <p id="board-lists-loading" class="board-list-status">Đang tải List...</p>
+
+                <div id="board-lists-empty" class="board-list-empty" hidden>
+                    <h2>Board chưa có List</h2>
+                    <p>Thêm List đầu tiên để bắt đầu sắp xếp công việc.</p>
+                </div>
+
+                <div id="board-list-track" class="board-list-track"
+                     aria-label="Các List hiện có" hidden></div>
+
+                <button id="create-list-button" class="board-add-list-button" type="button">
+                    <span aria-hidden="true">＋</span>
+                    <span>Thêm List</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <dialog id="board-list-dialog" class="board-list-dialog" aria-labelledby="board-list-dialog-title">
+        <form id="board-list-form" method="dialog">
+            <div class="dialog-heading">
+                <div>
+                    <span class="eyebrow">List</span>
+                    <h2 id="board-list-dialog-title">Tạo List</h2>
+                </div>
+                <button id="close-list-dialog" class="dialog-close" type="button" aria-label="Đóng">×</button>
+            </div>
+
+            <label for="board-list-title">Tên List</label>
+            <input id="board-list-title" name="title" type="text" maxlength="100" required>
+
+            <div class="dialog-actions">
+                <button id="cancel-list-button" class="button button-secondary" type="button">Hủy</button>
+                <button id="save-list-button" class="button button-primary" type="submit">
+                    Tạo List
+                </button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="card-dialog" class="card-dialog" aria-labelledby="card-dialog-title">
+        <form id="card-form" method="dialog">
+            <div class="dialog-heading card-dialog-heading">
+                <div class="card-dialog-heading-copy">
+                    <span class="eyebrow">Card</span>
+                    <h2 id="card-dialog-title">Tạo Card</h2>
+                </div>
+                <button id="close-card-dialog" class="dialog-close" type="button" aria-label="Đóng">×</button>
+            </div>
+
+            <p id="card-form-message" class="notice notice-error" role="alert" hidden></p>
+            <input id="card-list-id" type="hidden">
+            <input id="card-id" type="hidden">
+
+            <div class="card-dialog-layout">
+                <div class="card-dialog-main">
+                    <div class="card-dialog-main-scroll">
+                        <div class="card-field">
+                            <label for="card-title">Tiêu đề</label>
+                            <input id="card-title" name="title" type="text" maxlength="150" required>
+                        </div>
+
+                        <div class="card-field card-description-field">
+                            <label for="card-description">Mô tả</label>
+                            <textarea id="card-description" name="description" rows="8"
+                                      placeholder="Thêm mô tả chi tiết cho Card..."></textarea>
+                        </div>
+
+                        <section id="card-comments-section" class="card-comments-section" hidden
+                                 aria-labelledby="card-comments-title">
+                            <header class="card-comments-heading">
+                                <h3 id="card-comments-title">Bình luận</h3>
+                            </header>
+
+                            <p id="card-comments-loading" class="card-comments-status" hidden>
+                                Đang tải bình luận...
+                            </p>
+
+                            <div id="card-comments-error"
+                                 class="card-comments-status card-comments-error"
+                                 role="alert" hidden>
+                                <p></p>
+                                <button id="retry-card-comments" type="button">Thử lại</button>
+                            </div>
+
+                            <div id="card-comments-list" class="card-comments-list"
+                                 aria-live="polite"></div>
+                        </section>
+                    </div>
+
+                    <div id="card-comment-composer" class="card-comment-composer" hidden>
+                        <label for="card-comment-content">Thêm bình luận</label>
+                        <textarea id="card-comment-content" rows="1"
+                                  placeholder="Viết bình luận bằng văn bản thuần..."></textarea>
+                        <p id="card-comment-form-error" class="card-comment-form-error"
+                           role="alert" hidden></p>
+                        <button id="add-card-comment" class="button button-primary"
+                                type="button">
+                            Gửi bình luận
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="card-dialog-sidebar" aria-label="Thuộc tính và thao tác Card">
+                    <div class="card-dialog-sidebar-content">
+                        <div class="card-field">
+                            <label for="card-priority">Độ ưu tiên</label>
+                            <select id="card-priority" name="priority" required>
+                                <option value="LOW">Thấp</option>
+                                <option value="MEDIUM" selected>Trung bình</option>
+                                <option value="HIGH">Cao</option>
+                                <option value="URGENT">Khẩn cấp</option>
+                            </select>
+                        </div>
+
+                        <div id="card-label-field" class="card-field card-label-field" hidden>
+                            <span class="card-field-label">Nhãn</span>
+                            <div id="card-selected-labels" class="card-selected-labels"></div>
+                            <p id="card-selected-labels-empty" class="card-label-empty">
+                                Card chưa có nhãn
+                            </p>
+                            <button id="card-label-picker-button" class="card-label-picker-button"
+                                    type="button" aria-expanded="false"
+                                    aria-controls="card-label-picker">
+                                ＋ Thêm hoặc gỡ nhãn
+                            </button>
+
+                            <section id="card-label-picker" class="card-label-picker" hidden>
+                                <div class="card-label-picker-heading">
+                                    <strong>Chọn nhãn</strong>
+                                    <a th:href="@{/labels}">Quản lý nhãn</a>
+                                </div>
+                                <p id="card-label-picker-loading" class="card-label-picker-status" hidden>
+                                    Đang tải nhãn...
+                                </p>
+                                <div id="card-label-picker-error" class="card-label-picker-status" hidden>
+                                    <p></p>
+                                    <button id="retry-card-labels" type="button">Thử lại</button>
+                                </div>
+                                <p id="card-label-picker-empty" class="card-label-picker-status" hidden>
+                                    Bạn chưa có nhãn. Hãy tạo nhãn ở trang Quản lý nhãn.
+                                </p>
+                                <div id="card-label-options" class="card-label-options"></div>
+                            </section>
+                        </div>
+
+                        <div class="card-field card-due-date-field">
+                            <span class="card-field-label">Hạn hoàn thành</span>
+                            <input id="card-due-date" name="dueDate" type="hidden">
+                            <button id="card-due-date-button" class="card-due-date-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="card-date-picker">
+                                <span class="card-due-date-icon" aria-hidden="true">◷</span>
+                                <span id="card-due-date-display">Chọn ngày và giờ</span>
+                            </button>
+
+                            <section id="card-date-picker" class="card-date-picker" role="dialog" aria-modal="false" aria-labelledby="card-date-picker-title" hidden>
+                                <header class="card-date-picker-heading">
+                                    <h3 id="card-date-picker-title">Hạn hoàn thành</h3>
+                                    <button id="close-card-date-picker" class="card-date-picker-close" type="button" aria-label="Đóng bộ chọn ngày">×</button>
+                                </header>
+
+                                <div class="card-calendar-navigation">
+                                    <button id="previous-card-calendar-month" type="button" aria-label="Tháng trước">‹</button>
+                                    <strong id="card-calendar-month-label"></strong>
+                                    <button id="next-card-calendar-month" type="button" aria-label="Tháng sau">›</button>
+                                </div>
+
+                                <div class="card-calendar-weekdays" aria-hidden="true">
+                                    <span>CN</span>
+                                    <span>T2</span>
+                                    <span>T3</span>
+                                    <span>T4</span>
+                                    <span>T5</span>
+                                    <span>T6</span>
+                                    <span>T7</span>
+                                </div>
+                                <div id="card-calendar-grid" class="card-calendar-grid" role="grid" aria-label="Lịch chọn ngày hết hạn"></div>
+                                <div class="card-date-picker-fields">
+                                    <label for="card-due-date-day">Ngày hết hạn</label>
+                                    <div class="card-date-picker-inputs">
+                                        <input id="card-due-date-day" type="text" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="DD/MM/YYYY" aria-label="Ngày hết hạn">
+                                        <input id="card-due-date-time" type="time" step="60" aria-label="Giờ hết hạn">
+                                    </div>
+                                    <p id="card-date-picker-error" class="card-date-picker-error" role="alert" hidden></p>
+                                </div>
+
+                                <div class="card-date-picker-actions">
+                                    <button id="clear-card-date-picker" class="button button-secondary card-date-picker-clear" type="button">Xóa hạn</button>
+                                    <button id="cancel-card-date-picker" class="button button-secondary" type="button">Hủy</button>
+                                    <button id="apply-card-date-picker" class="button button-primary" type="button">Áp dụng</button>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div id="card-edit-actions" class="card-edit-actions" hidden>
+                            <span class="card-sidebar-label">Thao tác</span>
+                            <button id="card-dialog-completion-button" class="card-sidebar-action" type="button">Đánh dấu hoàn thành</button>
+                            <button id="delete-card-button" class="card-sidebar-action card-sidebar-delete" type="button">Xóa Card</button>
+                        </div>
+                    </div>
+
+                    <div class="dialog-actions card-dialog-sidebar-actions">
+                        <button id="cancel-card-button" class="button button-secondary" type="button">Hủy</button>
+                        <button id="save-card-button" class="button button-primary" type="submit">
+                            Tạo Card
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </form>
+    </dialog>
+</main>
+<th:block layout:fragment="pageScripts">
+    <script type="module" th:src="@{/js/board.js}"></script>
+</th:block>
+</body>
+</html>

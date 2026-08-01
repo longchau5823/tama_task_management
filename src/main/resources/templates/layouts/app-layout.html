@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}">
+    <title layout:title-pattern="$CONTENT_TITLE · $LAYOUT_TITLE">TaMa</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/app-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/toast.css}">
+    <th:block layout:fragment="pageStyles"></th:block>
+</head>
+<body class="app-shell">
+<header th:replace="~{fragments/topbar :: topbar}"></header>
+<aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+<div class="app-workspace">
+    <main class="app-content" layout:fragment="content">
+        <p>Application content</p>
+    </main>
+</div>
+<div id="toast-container"
+     class="toast-container"
+     aria-live="polite"
+     aria-atomic="false"></div>
+<script type="module" th:src="@{/js/account-menu.js}"></script>
+<th:block layout:fragment="pageScripts"></th:block>
+</body>
+</html>

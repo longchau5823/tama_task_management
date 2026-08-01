@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<header class="topbar" th:fragment="topbar">
+    <a class="brand topbar-brand" th:href="@{/dashboard}">TaMa</a>
+    <div class="topbar-account">
+        <span class="admin-badge" sec:authorize="hasRole('ADMIN')">ADMIN</span>
+        <details class="account-menu">
+            <summary class="account-menu-trigger" aria-label="Mở menu tài khoản">
+                <img id="account-menu-avatar"
+                     class="account-menu-avatar"
+                     th:src="@{/images/default-avatar.svg}"
+                     alt="Avatar người dùng">
+            </summary>
+            <div class="account-menu-panel">
+                <a class="account-menu-item" th:href="@{/profile}">Manage Account</a>
+                <form th:action="@{/logout}" method="post">
+                    <button class="account-menu-item account-menu-logout" type="submit">Đăng xuất</button>
+                </form>
+            </div>
+        </details>
+    </div>
+</header>
+</body>
+</html>

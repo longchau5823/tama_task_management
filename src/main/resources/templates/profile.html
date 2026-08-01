@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app-layout}">
+<head>
+    <title>Manage Account</title>
+    <th:block layout:fragment="pageStyles">
+        <link rel="stylesheet" th:href="@{/css/profile.css}">
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content" class="app-content profile-page">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">Account</span>
+            <h1>Manage Account</h1>
+        </div>
+    </div>
+
+    <p id="profile-page-message" class="notice" role="alert" hidden></p>
+    <p id="profile-loading" class="profile-loading" role="status">Đang tải thông tin tài khoản...</p>
+
+    <div id="profile-content" class="profile-grid" hidden>
+        <section class="profile-card profile-account-card" aria-labelledby="account-information-title">
+            <div class="profile-card-heading">
+                <div>
+                    <span class="eyebrow">Thông tin</span>
+                    <h2 id="account-information-title">Thông tin tài khoản</h2>
+                </div>
+            </div>
+
+            <div class="profile-account-overview">
+                <section class="profile-avatar-editor" aria-labelledby="profile-avatar-title">
+                    <img id="profile-avatar-preview"
+                         class="profile-avatar-preview"
+                         th:src="@{/images/default-avatar.svg}"
+                         alt="Ảnh đại diện hiện tại">
+
+                    <div class="profile-avatar-content">
+                        <h3 id="profile-avatar-title">Ảnh đại diện</h3>
+<!--                        <p class="field-help">-->
+<!--                            Chọn ảnh JPEG hoặc PNG, tối đa 2 MB và 4096 px mỗi chiều.-->
+<!--                        </p>-->
+
+                        <input id="profile-avatar-file"
+                               class="profile-avatar-file-input"
+                               type="file"
+                               accept="image/jpeg,image/png,.jpg,.jpeg,.png">
+
+                        <div class="profile-avatar-actions">
+                            <button id="profile-avatar-select"
+                                    class="button button-secondary profile-avatar-select"
+                                    type="button">
+                                Chọn ảnh
+                            </button>
+                            <button id="profile-avatar-submit"
+                                    class="button button-primary"
+                                    type="button"
+                                    disabled>
+                                Lưu ảnh
+                            </button>
+                            <button id="profile-avatar-reset"
+                                    class="button button-quiet"
+                                    type="button"
+                                    disabled>
+                                Dùng ảnh mặc định
+                            </button>
+                        </div>
+
+                        <p id="profile-avatar-file-name"
+                           class="profile-avatar-file-name"
+                           aria-live="polite"></p>
+                        <p id="profile-avatar-error"
+                           class="profile-avatar-error"
+                           role="alert"
+                           hidden></p>
+                    </div>
+                </section>
+
+                <dl class="profile-details">
+                    <div>
+                        <dt>Username</dt>
+                        <dd id="profile-username">—</dd>
+                    </div>
+                    <div>
+                        <dt>Ngày tạo</dt>
+                        <dd id="profile-created-at">—</dd>
+                    </div>
+                    <div>
+                        <dt>Cập nhật gần nhất</dt>
+                        <dd id="profile-updated-at">—</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="profile-card" aria-labelledby="email-form-title">
+            <div class="profile-card-heading">
+                <div>
+                    <span class="eyebrow">Liên hệ</span>
+                    <h2 id="email-form-title">Cập nhật email</h2>
+                </div>
+            </div>
+
+            <form id="profile-email-form" class="profile-form">
+                <label for="profile-email">Email</label>
+                <input id="profile-email" name="email" type="email" maxlength="100"
+                       autocomplete="email" required>
+                <p class="field-help">Email sẽ được bỏ khoảng trắng thừa và chuyển về chữ thường.</p>
+                <button id="profile-email-submit" class="button button-primary" type="submit">
+                    Lưu email
+                </button>
+            </form>
+        </section>
+
+        <section class="profile-card" aria-labelledby="password-form-title">
+            <div class="profile-card-heading">
+                <div>
+                    <span class="eyebrow">Bảo mật</span>
+                    <h2 id="password-form-title">Đổi mật khẩu</h2>
+                </div>
+            </div>
+
+            <form id="profile-password-form" class="profile-form">
+                <label for="current-password">Mật khẩu hiện tại</label>
+                <input id="current-password" name="currentPassword" type="password"
+                       autocomplete="current-password" required>
+
+                <label for="new-password">Mật khẩu mới</label>
+                <input id="new-password" name="newPassword" type="password"
+                       minlength="8" maxlength="72" autocomplete="new-password" required>
+
+                <label for="confirm-password">Xác nhận mật khẩu mới</label>
+                <input id="confirm-password" name="confirmPassword" type="password"
+                       maxlength="72" autocomplete="new-password" required>
+
+                <label class="password-visibility-control" for="show-profile-passwords">
+                    <input id="show-profile-passwords" type="checkbox">
+                    <span>Hiện mật khẩu</span>
+                </label>
+
+                <button id="profile-password-submit" class="button button-primary" type="submit">
+                    Đổi mật khẩu
+                </button>
+            </form>
+        </section>
+    </div>
+</main>
+<th:block layout:fragment="pageScripts">
+    <script type="module" th:src="@{/js/profile.js}"></script>
+</th:block>
+</body>
+</html>

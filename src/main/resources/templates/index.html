@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/public-layout}">
+<head>
+    <title>Trang chủ</title>
+</head>
+<body>
+<main layout:fragment="content" class="public-main hero">
+    <div class="hero-copy">
+        <span class="eyebrow">Personal Kanban</span>
+        <h1>Sắp xếp công việc theo cách dễ nhìn, dễ làm.</h1>
+        <p>TaMa đặt Board, List và Card vào một không gian cá nhân gọn gàng để bạn tập trung vào điều cần hoàn thành.</p>
+        <div class="hero-actions">
+            <a class="button button-primary" th:href="@{/register}">Bắt đầu</a>
+            <a class="button button-secondary" th:href="@{/login}">Đăng nhập</a>
+        </div>
+    </div>
+    <section class="hero-panel" aria-label="Các thành phần chính">
+        <div><strong>Board</strong><span>Tách riêng từng mục tiêu</span></div>
+        <div><strong>List</strong><span>Nhìn rõ trạng thái công việc</span></div>
+        <div><strong>Card</strong><span>Theo dõi hạn và ưu tiên</span></div>
+    </section>
+</main>
+</body>
+</html>

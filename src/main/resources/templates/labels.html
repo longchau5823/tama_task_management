@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app-layout}">
+<head>
+    <title>Nhãn</title>
+    <th:block layout:fragment="pageStyles">
+        <link rel="stylesheet" th:href="@{/css/label.css}">
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content" class="app-content labels-page" data-label-page>
+    <header class="page-heading labels-page-heading">
+        <div>
+            <span class="eyebrow">Thư viện</span>
+            <h1>Nhãn</h1>
+            <p>Quản lý các nhãn có thể tái sử dụng trên thẻ công việc của bạn.</p>
+        </div>
+        <button id="create-label-button" class="button button-primary" type="button">
+            ＋ Tạo nhãn
+        </button>
+    </header>
+
+    <p id="labels-message" class="notice notice-error" role="alert" hidden></p>
+    <p id="labels-loading" class="labels-status">Đang tải nhãn...</p>
+
+    <section id="labels-empty" class="empty-state" hidden>
+        <h2>Bạn chưa có nhãn nào</h2>
+        <p>Tạo nhãn đầu tiên để phân loại các thẻ công việc.</p>
+        <button id="create-first-label-button" class="button button-primary" type="button">
+            Tạo nhãn đầu tiên
+        </button>
+    </section>
+
+    <section id="labels-grid" class="labels-grid" aria-label="Danh sách nhãn" hidden></section>
+
+    <dialog id="label-dialog" class="label-dialog" aria-labelledby="label-dialog-title">
+        <form id="label-form" method="dialog">
+            <header class="label-dialog-heading">
+                <div>
+                    <span class="eyebrow">Nhãn</span>
+                    <h2 id="label-dialog-title">Tạo nhãn</h2>
+                </div>
+                <button id="close-label-dialog" class="label-dialog-close" type="button"
+                        aria-label="Đóng">×</button>
+            </header>
+
+            <input id="label-id" type="hidden">
+            <p id="label-form-message" class="notice notice-error" role="alert" hidden></p>
+
+            <div class="label-form-field">
+                <label for="label-name">Tên nhãn</label>
+                <input id="label-name" name="name" type="text" maxlength="50"
+                       autocomplete="off" required>
+            </div>
+
+            <div class="label-form-field">
+                <label for="label-color">Màu nhãn</label>
+                <div class="label-color-control">
+                    <input id="label-color" name="color" type="color" value="#3B82F6" required>
+                    <span id="label-color-value">#3B82F6</span>
+                </div>
+                <div id="label-palette" class="label-palette" aria-label="Màu gợi ý">
+                    <button type="button" data-color="#3B82F6" aria-label="Màu xanh dương"></button>
+                    <button type="button" data-color="#22C55E" aria-label="Màu xanh lá"></button>
+                    <button type="button" data-color="#F59E0B" aria-label="Màu vàng"></button>
+                    <button type="button" data-color="#EF4444" aria-label="Màu đỏ"></button>
+                    <button type="button" data-color="#8B5CF6" aria-label="Màu tím"></button>
+                </div>
+            </div>
+
+            <div class="label-preview">
+                <span>Xem trước</span>
+                <div id="label-preview-chip"></div>
+            </div>
+
+            <footer class="label-dialog-actions">
+                <button id="cancel-label-button" class="button button-secondary" type="button">
+                    Hủy
+                </button>
+                <button id="save-label-button" class="button button-primary" type="submit">
+                    Tạo nhãn
+                </button>
+            </footer>
+        </form>
+    </dialog>
+</main>
+<th:block layout:fragment="pageScripts">
+    <script type="module" th:src="@{/js/label.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+}
+
+.nav-actions, .hero-actions { display: flex; align-items: center; gap: 1rem; }
+
+.public-main { max-width: 1180px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+    align-items: center;
+    gap: 4rem;
+    min-height: calc(100vh - 170px);
+}
+
+.hero-copy h1 { max-width: 760px; margin-bottom: 1.3rem; font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 0.96; }
+.hero-copy p { max-width: 660px; margin-bottom: 2rem; color: var(--muted); font-size: 1.15rem; line-height: 1.75; }
+
+.hero-panel { display: grid; gap: 0.9rem; padding: 1.1rem; border: 1px solid var(--line); border-radius: 1.4rem; background: var(--surface); box-shadow: var(--shadow); }
+.hero-panel div { display: grid; gap: 0.25rem; padding: 1.2rem; border-radius: 0.9rem; background: var(--canvas); }
+.hero-panel span { color: var(--muted); font-size: 0.9rem; }
+
+.footer { padding: 2rem; color: var(--muted); text-align: center; }
+
+@media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 2rem; }
+    .nav-actions > a:not(.button) { display: none; }
+}

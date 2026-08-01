@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title">
+  <title id="title">Rừng xanh</title>
+  <defs>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#mist)"/>
+  <g fill="#14532d" opacity=".72">
+    <path d="M85 610l130-350 130 350z"/><path d="M265 650l155-440 155 440z"/>
+    <path d="M520 625l145-390 145 390z"/><path d="M760 660l170-470 170 470z"/>
+    <path d="M1010 620l120-330 120 330z"/>
+  </g>
+  <g fill="#052e16" opacity=".58">
+    <path d="M-70 720L105 285 280 720z"/><path d="M365 720l170-385 170 385z"/>
+    <path d="M835 720l168-410 168 410z"/>
+  </g>
+  <rect y="650" width="1280" height="70" fill="#052e16"/>
+</svg>

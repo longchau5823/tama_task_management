@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title">
+  <title id="title">Bờ biển</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0891b2"/>
+      <stop offset="1" stop-color="#164e63"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="410" fill="url(#sky)"/>
+  <rect y="410" width="1280" height="310" fill="url(#sea)"/>
+  <circle cx="1040" cy="150" r="72" fill="#fef3c7" opacity=".9"/>
+  <path d="M0 505c180-78 290-24 435-62s246-17 394 31 270 48 451-22v268H0z" fill="#67e8f9" opacity=".32"/>
+  <path d="M0 625c260-74 402 18 590-16s364-22 690 41v70H0z" fill="#fef3c7" opacity=".88"/>
+</svg>

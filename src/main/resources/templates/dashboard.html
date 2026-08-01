@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app-layout}">
+<head>
+    <title>Boards</title>
+    <th:block layout:fragment="pageStyles">
+        <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content" class="app-content">
+    <div class="dashboard-heading">
+        <span class="eyebrow">Workspace</span>
+        <button id="create-board-button" class="dashboard-create-button" type="button">
+            ＋ Tạo Board
+        </button>
+    </div>
+
+    <p id="board-message" class="notice" role="status" hidden></p>
+    <p id="boards-loading" class="boards-status">Đang tải danh sách Board...</p>
+
+    <section id="boards-empty" class="empty-state" hidden>
+        <h2>Chưa có Board nào</h2>
+        <p>Tạo Board đầu tiên để bắt đầu quản lý công việc của bạn.</p>
+        <button id="empty-create-board-button" class="button button-primary" type="button">Tạo Board đầu tiên</button>
+    </section>
+
+    <section id="board-grid" class="board-grid" aria-label="Danh sách Board" hidden></section>
+
+    <dialog id="board-dialog" class="board-dialog" aria-labelledby="board-dialog-title">
+        <form id="board-form" method="dialog">
+            <div class="dialog-heading">
+                <div>
+                    <span class="eyebrow">Board</span>
+                    <h2 id="board-dialog-title">Tạo Board</h2>
+                </div>
+                <button id="close-board-dialog" class="dialog-close" type="button" aria-label="Đóng">×</button>
+            </div>
+
+            <input id="board-id" type="hidden">
+
+            <label for="board-title">Tên Board</label>
+            <input id="board-title" name="title" type="text" maxlength="100" required>
+
+            <label for="board-description">Mô tả</label>
+            <textarea id="board-description" name="description" maxlength="500" rows="4"></textarea>
+
+            <fieldset>
+                <legend>Loại nền</legend>
+                <label class="background-option">
+                    <input type="radio" name="backgroundType" value="COLOR" checked>
+                    Màu nền
+                </label>
+                <label class="background-option">
+                    <input type="radio" name="backgroundType" value="IMAGE">
+                    Ảnh nền
+                </label>
+            </fieldset>
+
+            <div id="background-color-field">
+                <label for="board-background-color">Màu nền</label>
+                <input id="board-background-color" name="backgroundColor" type="color" value="#4F46E5">
+            </div>
+
+            <div id="background-image-field" hidden>
+                <input id="board-background-image" name="backgroundImage" type="hidden">
+
+                <span class="board-background-label">Chọn từ thư viện</span>
+                <div id="board-background-library" class="board-background-library"
+                     aria-label="Thư viện ảnh nền">
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/aurora.svg"
+                            aria-label="Cực quang" aria-pressed="false">
+                        <img src="/images/board-backgrounds/aurora.svg" alt="">
+                        <span>Cực quang</span>
+                    </button>
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/coast.svg"
+                            aria-label="Bờ biển" aria-pressed="false">
+                        <img src="/images/board-backgrounds/coast.svg" alt="">
+                        <span>Bờ biển</span>
+                    </button>
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/mountains.svg"
+                            aria-label="Núi xanh" aria-pressed="false">
+                        <img src="/images/board-backgrounds/mountains.svg" alt="">
+                        <span>Núi xanh</span>
+                    </button>
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/sunset.svg"
+                            aria-label="Hoàng hôn" aria-pressed="false">
+                        <img src="/images/board-backgrounds/sunset.svg" alt="">
+                        <span>Hoàng hôn</span>
+                    </button>
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/forest.svg"
+                            aria-label="Rừng xanh" aria-pressed="false">
+                        <img src="/images/board-backgrounds/forest.svg" alt="">
+                        <span>Rừng xanh</span>
+                    </button>
+                    <button class="board-background-thumbnail" type="button"
+                            data-background-path="/images/board-backgrounds/night.svg"
+                            aria-label="Đêm sao" aria-pressed="false">
+                        <img src="/images/board-backgrounds/night.svg" alt="">
+                        <span>Đêm sao</span>
+                    </button>
+                </div>
+
+                <div id="board-custom-background-choice" class="board-custom-background-choice">
+                    <div>
+                        <strong>Ảnh tùy chỉnh</strong>
+                        <span>JPEG hoặc PNG, tối đa 5 MB</span>
+                    </div>
+                    <label class="button button-secondary" for="board-custom-background">
+                        Chọn ảnh từ máy
+                    </label>
+                    <input id="board-custom-background" type="file"
+                           accept="image/jpeg,image/png,.jpg,.jpeg,.png">
+                </div>
+
+                <div id="board-background-preview" class="board-background-preview" hidden>
+                    <img id="board-background-preview-image" alt="Xem trước ảnh nền Board">
+                    <span id="board-background-preview-name"></span>
+                </div>
+
+                <p id="board-background-error" class="board-background-error"
+                   role="alert" hidden></p>
+            </div>
+
+            <div class="dialog-actions">
+                <button id="cancel-board-button" class="button button-secondary" type="button">Hủy</button>
+                <button id="save-board-button" class="button button-primary" type="submit">Lưu Board</button>
+            </div>
+        </form>
+    </dialog>
+</main>
+<th:block layout:fragment="pageScripts">
+    <script type="module" th:src="@{/js/dashboard.js}"></script>
+</th:block>
+</body>
+</html>

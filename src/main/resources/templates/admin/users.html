@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app-layout}">
+<head>
+    <title>Quản trị người dùng</title>
+    <th:block layout:fragment="pageStyles">
+        <link rel="stylesheet" th:href="@{/css/admin-users.css}">
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content" class="app-content">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">Administration</span>
+            <h1>Quản lý tài khoản</h1>
+        </div>
+    </div>
+
+    <p id="admin-users-message" class="notice" role="status" hidden></p>
+
+    <section class="user-management-panel" aria-labelledby="users-table-title">
+        <div class="panel-heading">
+            <div>
+                <h2 id="users-table-title">Danh sách người dùng</h2>
+            </div>
+        </div>
+
+        <p id="users-loading">Đang tải danh sách tài khoản...</p>
+        <p id="users-empty" class="empty-state" hidden>Chưa có tài khoản nào.</p>
+
+        <div id="users-table-wrapper" class="table-wrapper" hidden>
+            <table class="users-table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Ngày tạo</th>
+                    <th scope="col">Thao tác</th>
+                </tr>
+                </thead>
+                <tbody id="users-table-body"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<th:block layout:fragment="pageScripts">
+    <script type="module" th:src="@{/js/admin-users.js}"></script>
+</th:block>
+</body>
+</html>

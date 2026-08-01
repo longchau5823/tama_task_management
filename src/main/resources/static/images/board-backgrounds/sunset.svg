@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title">
+  <title id="title">Hoàng hôn</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset=".55" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#fdba74"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#sky)"/>
+  <circle cx="640" cy="390" r="118" fill="#fef3c7" opacity=".88"/>
+  <path d="M0 515l195-135 158 112 178-168 202 184 160-123 214 150 173-99v284H0z" fill="#312e81" opacity=".82"/>
+  <path d="M0 625c250-45 425 26 650-10s385-16 630 22v83H0z" fill="#1e1b4b"/>
+</svg>

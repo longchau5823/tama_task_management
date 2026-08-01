@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}">
+    <title>Đăng ký · TaMa</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body class="auth-page">
+<main class="auth-card">
+    <a class="brand" th:href="@{/}">TaMa</a>
+    <div>
+        <span class="eyebrow">Tạo không gian của bạn</span>
+        <h1>Đăng ký</h1>
+    </div>
+    <p id="registration-message" class="notice" hidden></p>
+    <form id="registration-form" class="auth-form">
+        <label for="username">Tên đăng nhập</label>
+        <input id="username" name="username" type="text" minlength="3" maxlength="50" autocomplete="username" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="100" autocomplete="email" required>
+        <label for="password">Mật khẩu</label>
+        <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+        <button class="button button-primary" type="submit">Tạo tài khoản</button>
+    </form>
+    <p class="auth-switch">Đã có tài khoản? <a th:href="@{/login}">Đăng nhập</a></p>
+</main>
+<script type="module" th:src="@{/js/auth.js}"></script>
+</body>
+</html>

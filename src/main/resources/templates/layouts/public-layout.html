@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}">
+    <title layout:title-pattern="$CONTENT_TITLE · $LAYOUT_TITLE">TaMa</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/public-layout.css}">
+    <th:block layout:fragment="pageStyles"></th:block>
+</head>
+<body>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+<main class="public-main" layout:fragment="content">
+    <p>Page content</p>
+</main>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<th:block layout:fragment="pageScripts"></th:block>
+</body>
+</html>

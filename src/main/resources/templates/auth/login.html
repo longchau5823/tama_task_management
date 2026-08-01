@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}">
+    <title>Đăng nhập · TaMa</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body class="auth-page">
+<main class="auth-card">
+    <a class="brand" th:href="@{/}">TaMa</a>
+    <div>
+        <span class="eyebrow">Chào mừng trở lại</span>
+        <h1>Đăng nhập</h1>
+        <p>Tiếp tục với không gian công việc của bạn.</p>
+    </div>
+    <p class="notice notice-error" th:if="${param.error}">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+    <p class="notice notice-success" th:if="${param.registered}">Đăng ký thành công. Bạn có thể đăng nhập.</p>
+    <p class="notice notice-success" th:if="${param.logout}">Bạn đã đăng xuất an toàn.</p>
+    <form class="auth-form" th:action="@{/login}" method="post">
+        <label for="username">Tên đăng nhập</label>
+        <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+        <label for="password">Mật khẩu</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button button-primary" type="submit">Đăng nhập</button>
+    </form>
+    <p class="auth-switch">Chưa có tài khoản? <a th:href="@{/register}">Đăng ký</a></p>
+</main>
+</body>
+</html>

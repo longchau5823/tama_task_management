@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav class="navbar" th:fragment="navbar" aria-label="Điều hướng chính">
+    <a class="brand" th:href="@{/}">TaMa</a>
+    <div class="nav-actions">
+        <a sec:authorize="isAuthenticated()" th:href="@{/dashboard}">Dashboard</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">Đăng nhập</a>
+        <a class="button button-primary" sec:authorize="isAnonymous()" th:href="@{/register}">Đăng ký</a>
+    </div>
+</nav>
+</body>
+</html>

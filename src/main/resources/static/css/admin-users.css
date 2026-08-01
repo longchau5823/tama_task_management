@@ -1,0 +1,99 @@
+.user-management-panel {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.panel-heading h2 {
+    margin-bottom: 0.35rem;
+}
+
+.panel-heading p,
+#users-loading {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+#admin-users-message {
+    margin-bottom: 1rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.users-table th {
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.status-badge,
+.role-badge {
+    display: inline-flex;
+    margin: 0.1rem 0.25rem 0.1rem 0;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 750;
+}
+
+.status-enabled {
+    color: var(--success);
+    background: #ecfdf3;
+}
+
+.status-disabled {
+    color: var(--danger);
+    background: #fef3f2;
+}
+
+.role-badge {
+    color: var(--primary-dark);
+    background: #eef2ff;
+}
+
+.user-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.button-small {
+    min-height: 2.1rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.82rem;
+}
+
+.button-danger {
+    color: #fff;
+    background: var(--danger);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
+}

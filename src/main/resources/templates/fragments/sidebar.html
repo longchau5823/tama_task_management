@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<aside class="sidebar" th:fragment="sidebar">
+    <nav aria-label="Điều hướng ứng dụng">
+        <a th:href="@{/dashboard}">Boards</a>
+        <a th:href="@{/labels}">Labels</a>
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/users}">Users</a>
+    </nav>
+</aside>
+</body>
+</html>
