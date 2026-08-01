@@ -390,21 +390,11 @@ Possible future improvements include:
 
 ## Author
 
-**Châu Thuyên Long**  
-Team Leader and Sole Developer
+**Châu Thuyên Long** – Team Leader and Sole Developer
 
-Responsibilities:
+## Academic Project Contributors
 
-- System analysis and technical planning
-- Database design
-- Backend development
-- Frontend development
-- REST API implementation
-- Authentication and authorization
-- Testing, integration, and project maintenance
-
-Ho Chi Minh City University of Technology – HUTECH  
-Information Technology – Software Engineering
+Other group members assisted with assigned documentation, diagrams, and presentation-related tasks.
 
 ---
 
