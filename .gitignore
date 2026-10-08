@@ -74,3 +74,27 @@ desktop.ini
 *.swp
 *~
 ~$*
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Local database backups and exports
+*.sql.gz
+*.sql.zip
+*.dump
+*.sqlite
+*.sqlite3
+
+# Uploaded files in nested directories
+**/uploads/
+
+# Additional private Spring configurations
+application-private.properties
+application-private.yml
+application-secrets.yml
+application-secrets.yaml
